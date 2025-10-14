@@ -22,6 +22,13 @@ d = [ Material(), a ] # make a list with an object in it
 def home():
     return render_template('home.html')
 
-@app.route("/materials")
+@app.route("/materials", methods=["GET", "POST"])
 def view_materials():
+    if request.method == 'GET':
+        # do GET stuff
+        pass
+    elif request.method == 'POST':
+        # do post stuff, like store form field data
+        pass
+    
     return render_template('view-materials.html', materials=d)
