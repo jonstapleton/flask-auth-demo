@@ -1,1 +1,17 @@
-<h1>View Materials</h1>
+{% extends "base.html" %}
+{% block body %}
+<h1>Materials</h1>
+{% for obj in materials %}
+<article style="border: 1px solid black;">
+    <div class="grid">
+        <div><img src="https://placecats.com/100/100"></div>
+        <div>
+            <p>{{ obj.name }}</p>
+            <p>{{ obj.quantity }}</p>
+            <p>{{ obj.cost }}</p>
+            <p>{{ obj.description }}</p>
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% endblock %}
