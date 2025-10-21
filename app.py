@@ -29,6 +29,7 @@ def view_materials():
         pass
     elif request.method == 'POST':
         # do post stuff, like store form field data
+        print(f"Form submitted with name {request.form["name"]}")
         pass
     
     return render_template('view-materials.html', materials=d)
