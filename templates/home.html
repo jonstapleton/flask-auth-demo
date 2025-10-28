@@ -1,34 +1,10 @@
 {% extends "base.html" %}
 {% block head%}
 {{ super() }}
-<style>
-    .centered {
-        display: flex;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-    }
-    .hero {
-        display: block;
-        text-align: center;
-        
-    }
-    h1, p {
-        font-size: 400%;
-    }
-</style>
 {% endblock %}  
 {% block body %}
-<div class="centered">
-    <div class="hero">
-        <h1>Flask Auth Demo</h1>
-        <p>A demonstration</p>
-    </div>
-    <form action="/materials" method="POST">
-        <fieldset>
-            <input type="text" name="name">
-            <input type="submit" />
-        </fieldset>
-    </form>
-</div>
+
+<h1>Flask Auth Demo</h1>
+<p>A demonstration</p>
+
 {% endblock %}
