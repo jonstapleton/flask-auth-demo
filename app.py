@@ -16,17 +16,11 @@ class Material(db.Model):
     # define class variables
     id:so.Mapped[int] = so.mapped_column(primary_key = True)
     cost:so.Mapped[float] = so.mapped_column(index=True, default=0.00)
-    description:so.Mapped[str] = so.mapped_column(index=True, default="A default description to display on the screen.")
+    description:so.Mapped[str] = so.mapped_column(index=True, default="A default description")
     quantity:so.Mapped[int] = so.mapped_column(index=True, default=0)
     # write the constructor
     def __init__(self):
         pass
-
-a = Material()
-a.name = "Red Oak"
-a.cost = 7.25
-
-d = [ Material(), a ] # make a list with an object in it
 
 @app.route('/')
 def home():
@@ -34,14 +28,18 @@ def home():
 
 @app.route("/materials", methods=["GET", "POST"])
 def view_materials():
+    # create a database query
+    query = sa.select(Material)
+    d = db.session.scalars(query).all()
+    
     if request.method == 'GET':
         # do GET stuff
         pass
     elif request.method == 'POST':
         # do post stuff, like store form field data
         print(f"Form submitted with name {request.form["name"]}")
-        o = Material()
-        o.name = request.form["name"]
-        d.append(o) # add o to the list of Materials
-    
+        obj = Material()
+        db.session.add(obj)
+
+    db.session.commit() # commit changes at the end of the route!
     return render_template('view-materials.html', materials=d)
